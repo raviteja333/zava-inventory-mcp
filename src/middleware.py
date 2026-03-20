@@ -14,7 +14,7 @@ class AuthenticationError(PermissionError):
 
 def get_expected_api_key() -> str:
     """Read the expected API key from environment variables."""
-    api_key = "123456789"
+    api_key = os.environ.get("ZAVA_API_KEY") or os.environ.get("API_KEY", "")
     if not api_key:
         raise AuthenticationError(
             "API key is not configured. Set ZAVA_API_KEY (preferred) or API_KEY in the environment."
